@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Based on https://github.com/million12/docker-haproxy/blob/master/container-files/bootstrap.sh
 
