@@ -12,9 +12,9 @@ RUN buildDeps='curl ca-certificates' \
 
 EXPOSE 80 443
 
-COPY entrypoint.sh ./
+COPY entrypoint.sh /
 
 VOLUME /etc/letsencrypt
 VOLUME /var/acme-webroot
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
