@@ -1,5 +1,5 @@
 # docker-haproxy-letsencrypt
-haproxy docker image based on camptocamp/haproxy-luasec with built-in acme-plugin and zero-downtime auto-reload on configuration / certificate changes.
+haproxy docker image based on camptocamp/haproxy-luasec with built-in acme-plugin and zero-downtime auto-reload on configuration / certificate changes. This image was created for use with [letsencrypt-manager](https://github.com/bringnow/docker-letsencrypt-manager).
 
 For integrating the acme-plugin, see [its documentation](https://github.com/janeczku/haproxy-acme-validation-plugin/).
 
