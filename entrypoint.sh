@@ -45,7 +45,7 @@ if [[ $? != 0 ]] || test -t 0; then exit $?; fi
 log "HAProxy started with $HAPROXY_CONFIG config, pid $(cat $HAPROXY_PID_FILE)." && log
 
 # Check if config or certificates were changed
-while inotifywait -q -r $HAPROXY_CONFIG /etc/letsencrypt; do
+while inotifywait -q -r --exclude '\.git/' $HAPROXY_CONFIG /etc/letsencrypt; do
   if [ -f $HAPROXY_PID_FILE ]; then
     log "Restarting HAProxy due to config changes..." #&& print_config
     $HAPROXY_CHECK_CONFIG_CMD
