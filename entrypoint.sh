@@ -48,9 +48,12 @@ log "HAProxy started with $HAPROXY_CONFIG config, pid $(cat $HAPROXY_PID_FILE)."
 while inotifywait -q -r --exclude '\.git/' -e modify -e create -e delete $HAPROXY_CONFIG /etc/letsencrypt; do
   if [ -f $HAPROXY_PID_FILE ]; then
     log "Restarting HAProxy due to config changes..." #&& print_config
-    $HAPROXY_CHECK_CONFIG_CMD
-    $HAPROXY_CMD -sf $(cat $HAPROXY_PID_FILE)
-    log "HAProxy restarted, pid $(cat $HAPROXY_PID_FILE)." && log
+    if $HAPROXY_CHECK_CONFIG_CMD; then
+      $HAPROXY_CMD -sf $(cat $HAPROXY_PID_FILE)
+      log "HAProxy restarted, pid $(cat $HAPROXY_PID_FILE)." && log
+    else
+      log "HAProxy config invalid, not restarting..."
+    fi
   else
     log "Error: no $HAPROXY_PID_FILE present, HAProxy exited."
     break
