@@ -12,6 +12,10 @@ RUN buildDeps='curl ca-certificates' runtimeDeps='inotify-tools' \
 
 EXPOSE 80 443
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		rsyslog \
+ && rm -rf /var/lib/apt/lists/*
+
 COPY entrypoint.sh /
 
 VOLUME /etc/letsencrypt
