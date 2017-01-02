@@ -9,7 +9,7 @@ RUN buildDeps='curl ca-certificates' runtimeDeps='haproxy inotify-tools lua-sec 
 	&& curl -sSL https://github.com/janeczku/haproxy-acme-validation-plugin/archive/${ACME_PLUGIN_VERSION}.tar.gz -o acme-plugin.tar.gz \
 	&& tar -C /etc/haproxy/ -xf acme-plugin.tar.gz --strip-components=1 --no-anchored acme-http01-webroot.lua \
 	&& rm *.tar.gz \
-	&& apt-get purge -y --auto-remove $buildDeps
+	&& apt-get purge -y --auto-remove $buildDeps \
 	&& rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80 443
