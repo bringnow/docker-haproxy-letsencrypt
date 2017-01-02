@@ -35,6 +35,9 @@ print_config() {
   printf '=%.0s' {1..100} && echo
 }
 
+# Make sure syslog service is running
+service rsyslog start
+
 
 # Launch HAProxy.
 #log $HAPROXY_CMD && print_config
