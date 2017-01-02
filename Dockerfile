@@ -1,4 +1,4 @@
-FROM camptocamp/haproxy-luasec
+FROM debian:stretch
 MAINTAINER bringnow team <wecare@bringnow.com>
 
 ENV ACME_PLUGIN_VERSION 0.1.1
@@ -13,8 +13,13 @@ RUN buildDeps='curl ca-certificates' runtimeDeps='inotify-tools' \
 EXPOSE 80 443
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+		haproxy \
+		lua-sec \
 		rsyslog \
  && rm -rf /var/lib/apt/lists/*
+
+# Ensure /dev dir in chroot exists when rsyslog creates /dev/log
+RUN mkdir -p /var/lib/haproxy/dev
 
 COPY entrypoint.sh /
 
