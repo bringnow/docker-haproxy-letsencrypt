@@ -7,6 +7,8 @@ Example haproxy config file using acme webroot plugin:
 
 ```
 global
+	log /dev/log local0
+  log /dev/log local1 notice
 	chroot /var/lib/haproxy
 
 	# Default SSL material locations
@@ -44,4 +46,11 @@ backend www
 	redirect prefix	https://www.example.com code 301 unless { hdr(host) www.example.com }
 	option forwardfor
 	server node1 127.0.0.1:6000
+```
+
+## Logging
+
+This image is setup for haproxy logging to rsyslog. You can access the log file using the following command:
+```
+$ docker-compose exec haproxy tail -f /var/log/haproxy.log
 ```
