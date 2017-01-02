@@ -2,7 +2,7 @@ FROM debian:stretch
 MAINTAINER bringnow team <wecare@bringnow.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG ACME_PLUGIN_VERSION 0.1.1
+ARG ACME_PLUGIN_VERSION=0.1.1
 
 RUN buildDeps='curl ca-certificates' runtimeDeps='haproxy inotify-tools lua-sec rsyslog' \
 	&& apt-get update && apt-get upgrade -y && apt-get install -y $buildDeps $runtimeDeps --no-install-recommends \
