@@ -38,6 +38,13 @@ print_config() {
 # Make sure syslog service is running
 service rsyslog start
 
+while [ ! -S /var/lib/haproxy/dev/log ]
+  do
+  log "Waiting for rsyslog to populate /var/lib/haproxy/dev/log..."
+  sleep 1
+done
+log "/var/lib/haproxy/dev/log exists and is a socket."
+
 
 # Launch HAProxy.
 #log $HAPROXY_CMD && print_config
