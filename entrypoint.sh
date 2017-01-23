@@ -36,6 +36,7 @@ print_config() {
 }
 
 # Make sure syslog service is running
+mkdir -p /var/lib/haproxy/dev
 service rsyslog start
 
 while [ ! -S /var/lib/haproxy/dev/log ]

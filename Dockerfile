@@ -14,9 +14,6 @@ RUN buildDeps='curl ca-certificates' runtimeDeps='haproxy inotify-tools lua-sec 
 
 EXPOSE 80 443
 
-# Ensure /dev dir in chroot exists when rsyslog creates /dev/log
-RUN mkdir -p /var/lib/haproxy/dev
-
 COPY entrypoint.sh /
 
 VOLUME /etc/letsencrypt
